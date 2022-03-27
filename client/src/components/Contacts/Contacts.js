@@ -2,7 +2,7 @@
 import './Contacts.sass'
 import ContactsItem from '../ContactsItem/ContactsItem'
 import {useSelector, useDispatch} from 'react-redux';
-import { getContacts } from '../../actions/contact'
+import {getInfo} from '../../actions/user'
 import {loadContacts, loadingNotes} from '../../reduxActions/reduxActions'
 import {useEffect} from 'react'
 
@@ -13,9 +13,8 @@ function Contacts () {
 
     useEffect (() => {
         dispatch(loadingNotes())
-        getContacts(sessionStorage.getItem("name")).then(items => items.data.contact).then(items => dispatch(loadContacts(items)))
+        getInfo().then(items => items.data.user.contacts).then(items => dispatch(loadContacts(items)))
     }, [])
-
 
     return (
         <section className="contacts">

@@ -2,9 +2,9 @@
 import './Notes.sass'
 import NotesItem from '../NotesItem/NotesItem'
 import {useEffect} from 'react'
-import { getNotes } from '../../actions/note'
 import {loadNotes, loadingNotes} from '../../reduxActions/reduxActions'
 import {useSelector, useDispatch} from 'react-redux';
+import {getInfo} from '../../actions/user'
 
 function Notes () {
     const loading = useSelector(state => state.loading);
@@ -16,7 +16,7 @@ function Notes () {
 
     useEffect (() => {
         dispatch(loadingNotes())
-        getNotes(sessionStorage.getItem("name")).then(items => items.data.note).then(items => dispatch(loadNotes(items)))
+        getInfo().then(items => items.data.user.notes).then(items => dispatch(loadNotes(items)))
     }, [])
 
     const filterPost = (items, filter) => {

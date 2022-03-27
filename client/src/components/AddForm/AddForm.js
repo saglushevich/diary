@@ -1,7 +1,7 @@
 import './AddForm.sass'
 import nextId from 'react-id-generator'
 import {useState} from 'react';
-import {addNote} from '../../actions/note';
+import {update} from '../../actions/user';
 import {addNoteToList} from '../../reduxActions/reduxActions'
 import {useDispatch} from 'react-redux';
 
@@ -17,12 +17,11 @@ function AddForm () {
         let data = {
             _id: htmlId,
             title,
-            owner: sessionStorage.getItem("name"),
             description,
             important: false,
             date
         }
-        addNote(data)
+        update(sessionStorage.getItem("id"), {$push: {notes: data}})
         dispatch(addNoteToList(data))
         setTitle("")
         setDescription("")

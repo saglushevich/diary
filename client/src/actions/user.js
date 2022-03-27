@@ -27,3 +27,21 @@ export const login = async (name, password) => {
         return false
     }
 }
+
+export const update = async (_id, changes) => {
+    try {
+        return await axios.put(`http://localhost:8000/api/auth/update/${_id}`, {
+            changes
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getInfo = async (_id = sessionStorage.getItem("id")) => {
+    try {
+        return await axios.get(`http://localhost:8000/api/auth/user/${_id}`)
+    } catch (error) {
+        console.log(error)
+    }
+}

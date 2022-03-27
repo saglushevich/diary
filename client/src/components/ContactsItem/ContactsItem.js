@@ -2,9 +2,9 @@ import './ContactsItem.sass'
 import pencil from '../../resources/pencil.png'
 import deleteIcon from '../../resources/delete.png'
 import {changeContacts} from '../../reduxActions/reduxActions'
-import { deleteContact, updateContact } from '../../actions/contact'
 import {useSelector, useDispatch} from 'react-redux';
 import {useState} from 'react'
+import {update} from '../../actions/user'
 
 function ContactsItem (props) {
     const {title, phone, _id} = props
@@ -15,16 +15,16 @@ function ContactsItem (props) {
     const [newTitle, setNewTitle] = useState(title);
     const [newPhone, setNewPhone] = useState(phone);
 
-    const deleteItem = (_id) => {
+    const deleteContact = (_id) => {
         const elements = contacts.filter(item => item._id !== _id);
         dispatch(changeContacts(elements))
-        deleteContact(_id)
+        update(sessionStorage.getItem("id"), {$pull: {contacts: {_id: _id}}})
     }
 
-    const updateItem = async (_id, changes) => {
+    const updateContact = async (_id, changes) => {
         const elements = contacts.map(item => {
             if(item._id === _id) {
-                updateContact(_id, {$set: changes})
+                update(sessionStorage.getItem("id"), {$set: {contacts: {...item, ...changes}}})
                 return {...item, ...changes}
             }
             return item
@@ -34,7 +34,7 @@ function ContactsItem (props) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        updateItem(_id, {title: newTitle, phone: newPhone});
+        updateContact(_id, {title: newTitle, phone: newPhone});
         setClicked(clicked => !clicked)
     }
 
@@ -45,7 +45,7 @@ function ContactsItem (props) {
                     <li className='contacts__item'>
                         <form onSubmit={onSubmit} style={{"display": 'flex'}}>
                             <input onChange={(e) => setNewTitle(e.target.value)} defaultValue={title} required name='contact' type="text"  minLength="3" className='add__form-input_edit' placeholder='Введите имя'/>
-                            <input onChange={(e) => setNewPhone(e.target.value)} defaultValue={phone} required name='phone' type="text"  minLength="7" className='add__form-input_edit' placeholder='Введите номер'/>
+                            <input onChange={(e) => setNewPhone(e.target.value)} defaultValue={phone} required name='phone' type="text"  minLength="6" className='add__form-input_edit' placeholder='Введите номер'/>
                             <button className='add__form-btn add__form-btn_small'>Готово</button>
                         </form>
                     </li>
@@ -55,7 +55,7 @@ function ContactsItem (props) {
                         <div className="contacts__actions">
                             <div className="contacts__item-text">{phone}</div>
                             <div onClick={() => setClicked(clicked => !clicked)} className="contacts__item-icon"><img src={pencil} alt="correctItem" /></div>
-                            <div onClick={() => deleteItem(_id)} className="contacts__item-icon"><img src={deleteIcon} alt="deleteItem" /></div>  
+                            <div onClick={() => deleteContact(_id)} className="contacts__item-icon"><img src={deleteIcon} alt="deleteItem" /></div>  
                         </div>
                     </li>
             }
