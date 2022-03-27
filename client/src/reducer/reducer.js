@@ -28,7 +28,7 @@ const reducer = (state = initial, action) => {
         case "ADD_CONTACT":
             return {...state, contacts: [...state.contacts, action.payload]}
         case "LOAD_CONTACTS":
-            return {...state, contacts: [...state.contacts, ...action.payload]}
+            return {...state, contacts: [...state.contacts, ...action.payload], loading: false}
         case "CHANGE_CONTACTS":
             return {...state, contacts: [...action.payload]}
         default:

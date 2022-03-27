@@ -10,6 +10,7 @@ import '../../styles/media.sass'
 import '../../styles/styles.sass'
 
 function App() {
+    
 
     return (
         <BrowserRouter>
@@ -36,7 +37,6 @@ function App() {
                     <Route path="/main" exact>
                         <MainPage/>
                     </Route>
-                    
                 </Switch>  
             </div>
         </BrowserRouter>

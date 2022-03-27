@@ -28,17 +28,17 @@ function NotesItem (props) {
     const updateItem = async (_id, changes) => {
         const elements = data.map(item => {
             if(item._id === _id) {
-                update(update(sessionStorage.getItem("id"), {$set: {notes: {...item, ...changes}}}))
                 return {...item, ...changes}
             }
             return item
         })
         dispatch(changeNotes(elements))
+        update(sessionStorage.getItem("id"), {$set: {notes: elements}})
     }
 
     return (
         <>
-            <li key={_id} style={important ? {'background' : 'rgba(255, 248, 89, 0.7)'} : null} className="notesItem">
+            <li key={_id} style={important ? {'background' : '#B8F5DF'} : null} className="notesItem">
                 <div className="notesItem__main">
                     <div style={date < currentDate ? {"color": "#F5251C"} : null} className="notesItem__title">{title.length > 30 ? `${title.slice(0, 30)}...` : title}</div>
                     <div className="notesItem__actions">

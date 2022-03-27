@@ -24,12 +24,12 @@ function ContactsItem (props) {
     const updateContact = async (_id, changes) => {
         const elements = contacts.map(item => {
             if(item._id === _id) {
-                update(sessionStorage.getItem("id"), {$set: {contacts: {...item, ...changes}}})
                 return {...item, ...changes}
             }
             return item
         })
         dispatch(changeContacts(elements))
+        update(sessionStorage.getItem("id"), {$set: {contacts: elements}})
     }
 
     const onSubmit = (e) => {

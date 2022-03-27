@@ -15,7 +15,7 @@ function Filters () {
     const btns = btnsData.map(item => {
         const {filter, title} = item;
         const active = filterSelected === filter;
-        const activeClass = active ? {'backgroundColor' : '#fff', 'color' : '#3D5A80'} : {'backgroundColor' : 'transparent', 'border': '3px solid #FFFFFF'}
+        const activeClass = active ? {'backgroundColor' : '#fff', 'color' : '#333269'} : {'backgroundColor' : 'transparent', 'border': '3px solid #FFFFFF'}
         return (
             <div key={filter} onClick={() => dispatch(setFilter(filter))} className="filters__item" style={activeClass}>{title}</div>
         )

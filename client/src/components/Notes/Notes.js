@@ -36,7 +36,7 @@ function Notes () {
         }
 
         return items.filter(item => {
-            return item.title.indexOf(term) > -1
+            return item.title.toUpperCase().indexOf(term.toUpperCase()) > -1
         })
     }
 

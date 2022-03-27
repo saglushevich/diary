@@ -9,7 +9,7 @@ import AddContactForm from "../components/AddContactForm/AddContactForm";
 
 function MainPage () {
     return (
-        <>
+       <>
             <Buttons/>
             <Info/>
             <Manipulations/>
@@ -18,7 +18,7 @@ function MainPage () {
             <Contacts/>
             <AddContactForm/>
             <Footer/>
-        </>
+       </>
     )
 }
 

@@ -1,6 +1,5 @@
 import './SearchPanel.sass'
 import {useState} from 'react'
-import {store} from '../../store/store'
 import {setTerm} from '../../reduxActions/reduxActions'
 import {useDispatch} from 'react-redux';
 
@@ -12,7 +11,6 @@ function SearchPanel () {
     const onUpdateSearch = (e) => {
         setRequest(e.target.value)
         dispatch(setTerm(request))
-        console.log(store.getState())
     }
 
     return (

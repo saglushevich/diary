@@ -1,12 +1,10 @@
 import './AddForm.sass'
-import nextId from 'react-id-generator'
 import {useState} from 'react';
 import {update} from '../../actions/user';
 import {addNoteToList} from '../../reduxActions/reduxActions'
 import {useDispatch} from 'react-redux';
 
 function AddForm () {
-    let htmlId = nextId();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
@@ -15,7 +13,7 @@ function AddForm () {
     const onFormSubmit = (e) => {
         e.preventDefault();
         let data = {
-            _id: htmlId,
+            _id: Math.floor(Math.random() * (1125899906842624 - 1) + 1),
             title,
             description,
             important: false,
