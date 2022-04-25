@@ -1,6 +1,12 @@
-export const loadingNotes = () => {
+export const loadingData = () => {
     return {
-        type: "LOADING_NOTES"
+        type: "LOADING_DATA"
+    }
+}
+
+export const loadedData = () => {
+    return {
+        type: "LOADED_DATA"
     }
 }
 

@@ -9,10 +9,12 @@ const initial = {
 
 const reducer = (state = initial, action) => {
     switch (action.type) {
-        case "LOADING_NOTES": 
+        case "LOADING_DATA": 
             return {...state, loading: true}
+        case "LOADED_DATA":
+            return {...state, loading: false}
         case "LOAD_NOTES":
-            return {...state, data: [...state.data, ...action.payload], loading: false}
+            return {...state, data: [...state.data, ...action.payload]}
         case "SET_TERM":
             return {...state, term: action.payload}
         case "SET_FILTER":
@@ -28,7 +30,7 @@ const reducer = (state = initial, action) => {
         case "ADD_CONTACT":
             return {...state, contacts: [...state.contacts, action.payload]}
         case "LOAD_CONTACTS":
-            return {...state, contacts: [...state.contacts, ...action.payload], loading: false}
+            return {...state, contacts: [...state.contacts, ...action.payload]}
         case "CHANGE_CONTACTS":
             return {...state, contacts: [...action.payload]}
         default:

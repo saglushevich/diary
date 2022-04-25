@@ -74,18 +74,22 @@
             font-size: 22px
     .notesItem
         padding: 10px 10px
-        align-items: start
+        justify-content: space-between
         &__title
             font-size: 16px
-            max-width: 150px
+            width: 100px
+            text-align: justify
         &__icon
             width: 25px
             height: 25px
-            margin-left: 15px
+            margin-left: 10px
+            img
+                width: 25px
+                height: 25px
         &__actions
             align-items: start
+            width: 200px
         &__date
-            max-width: 159px
             font-size: 14px
         &__descr
             font-size: 14px
@@ -135,3 +139,17 @@
             max-width: 340px
         &__input
             width: 280px
+    .contacts
+        &__item
+            padding: 10px 10px
+            align-items: start
+            &-text
+                font-size: 16px
+            &-icon
+                width: 25px
+                height: 25px
+                margin-left: 15px
+        &__actions
+            align-items: start
+    // .add
+    //     &__block

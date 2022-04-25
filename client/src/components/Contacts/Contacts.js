@@ -1,20 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import './Contacts.sass'
 import ContactsItem from '../ContactsItem/ContactsItem'
-import {useSelector, useDispatch} from 'react-redux';
-import {getInfo} from '../../actions/user'
-import {loadContacts, loadingNotes} from '../../reduxActions/reduxActions'
-import {useEffect} from 'react'
+import {useSelector} from 'react-redux';
 
 function Contacts () {
-    const loading = useSelector(state => state.loading);
-    const contacts = useSelector(state => state.contacts);
-    const dispatch = useDispatch();
 
-    useEffect (() => {
-        dispatch(loadingNotes())
-        getInfo().then(items => items.data.user.contacts).then(items => dispatch(loadContacts(items)))
-    }, [])
+    const sortByField = (field) => {
+        return (a, b) => a[field] > b[field] ? 1 : -1
+    }
+
+    const loading = useSelector(state => state.loading);
+    const contacts = useSelector(state => state.contacts).sort(sortByField('title'))
 
     return (
         <section className="contacts">

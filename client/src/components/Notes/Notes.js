@@ -1,10 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './Notes.sass'
 import NotesItem from '../NotesItem/NotesItem'
-import {useEffect} from 'react'
-import {loadNotes, loadingNotes} from '../../reduxActions/reduxActions'
-import {useSelector, useDispatch} from 'react-redux';
-import {getInfo} from '../../actions/user'
+import {useSelector} from 'react-redux';
 
 function Notes () {
     const loading = useSelector(state => state.loading);
@@ -12,12 +9,10 @@ function Notes () {
     const term = useSelector(state => state.term)
     const filter = useSelector(state => state.filter)
     const data = useSelector(state => state.data)
-    const dispatch = useDispatch()
 
-    useEffect (() => {
-        dispatch(loadingNotes())
-        getInfo().then(items => items.data.user.notes).then(items => dispatch(loadNotes(items)))
-    }, [])
+    const sortByField = (field) => {
+        return (a, b) => a[field] > b[field] ? 1 : -1
+    }
 
     const filterPost = (items, filter) => {
         switch (filter) {
@@ -40,7 +35,7 @@ function Notes () {
         })
     }
 
-    let visibleDate = filterPost(searchNote(data, term), filter)
+    let visibleDate = filterPost(searchNote(data, term), filter).sort(sortByField('date'))
 
     return (
         <section className="notes">
