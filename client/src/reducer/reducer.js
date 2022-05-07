@@ -22,7 +22,7 @@ const reducer = (state = initial, action) => {
         case "SET_DATE":
             return {...state, date: action.payload}
         case "RESET_STATE":
-            return {data: [], loading: false, filter: 'all', term: '', date: '', description: false}
+            return {data: [], contacts: [], loading: false, filter: 'all', term: '', date: ''}
         case "CHANGE_NOTES":
             return {...state, data: [...action.payload]}
         case "ADD_NOTE":

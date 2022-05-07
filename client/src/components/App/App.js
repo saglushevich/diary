@@ -10,7 +10,6 @@ import '../../styles/media.sass'
 import '../../styles/styles.sass'
 
 function App() {
-    
 
     return (
         <BrowserRouter>
