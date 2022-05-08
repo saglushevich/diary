@@ -2,11 +2,10 @@ import axios from 'axios'
 
 export const registration = async (name, password) => {
     try {
-        let a = await axios.post(`http://localhost:8000/api/auth/registration`, {
+        return await axios.post(`http://localhost:8000/api/auth/registration`, {
             name,
             password
         })
-        return a
     } catch (error) {
         console.log(error)
         return false
