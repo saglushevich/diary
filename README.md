@@ -5,6 +5,7 @@ In this project I mastered:
 + react-create-app;
 + redux, react-redux;
 + react-router;
+
 You can run this project locally just do:
 + `git clone https://github.com/saglushevich/diary.git`;
 + `cd diary`;
