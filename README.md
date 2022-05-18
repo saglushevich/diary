@@ -1,5 +1,6 @@
 # diary
 This is a web diary (with TODO list). The user can add, delete, modify, filter and search for data in his list. This application is multi-user. All data from the user is stored in the database.
+Something has been changed
 
 In this project I mastered:
 + React;
