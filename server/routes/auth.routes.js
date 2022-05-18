@@ -3,7 +3,7 @@ const User = require('../models/User')
 const bcrypt = require("bcryptjs")
 const config = require("config")
 const router = new Router()
-const jwt = require("jsonwebtoken")
+//const jwt = require("jsonwebtoken")
 
 //РЕГИСТРАЦИЯ
 router.post('/registration', async (req, res) => {
@@ -39,9 +39,7 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({message: "Invalid password"})
         }
 
-        const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"})
         return res.json({
-            token,
             user: {
                 id: user.id,
                 name: user.name

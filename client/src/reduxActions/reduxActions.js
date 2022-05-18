@@ -1,12 +1,7 @@
-export const loadingData = () => {
+export const setLoadingStatus = (value) => {
     return {
-        type: "LOADING_DATA"
-    }
-}
-
-export const loadedData = () => {
-    return {
-        type: "LOADED_DATA"
+        type: "SET_LOADING_DATA_STATUS",
+        payload: value
     }
 }
 

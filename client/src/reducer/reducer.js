@@ -9,10 +9,8 @@ const initial = {
 
 const reducer = (state = initial, action) => {
     switch (action.type) {
-        case "LOADING_DATA": 
-            return {...state, loading: true}
-        case "LOADED_DATA":
-            return {...state, loading: false}
+        case "SET_LOADING_DATA_STATUS":
+            return {...state, loading: action.payload}
         case "LOAD_NOTES":
             return {...state, data: [...state.data, ...action.payload]}
         case "SET_TERM":

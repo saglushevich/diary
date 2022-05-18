@@ -32,7 +32,7 @@ function AddForm () {
                 <div className="add__block">
                     <div className="add__block-title">Добавить запись в список:</div>
                     <form onSubmit={onFormSubmit} className='add__form'>
-                        <input onChange={(e) => setTitle(e.target.value)} value={title} required name='note' type="text" className="add__form-input" placeholder='Введите запись'/>
+                        <input onChange={(e) => setTitle(e.target.value)} value={title} required minLength="3" name='note' type="text" className="add__form-input" placeholder='Введите запись'/>
                         <input onChange={(e) => setDescription(e.target.value)} value={description} name='descr' type="text" className="add__form-input" placeholder='Введите описание'/>
                         <input onChange={(e) => setDate(e.target.value)} value={date} name='date' type="date" className="add__form-input add__form-date" placeholder='дд-мм-гггг'/>
                         <button className="add__form-btn">Добавить</button>

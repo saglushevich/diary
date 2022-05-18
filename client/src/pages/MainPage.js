@@ -12,7 +12,7 @@ import Spinner from "../components/Spinner/Spinner";
 import {getInfo} from '../actions/user'
 import {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux';
-import {loadContacts, loadNotes, loadingData, loadedData} from '../reduxActions/reduxActions'
+import {loadContacts, loadNotes, setLoadingStatus} from '../reduxActions/reduxActions'
 
 function MainPage () {
     const loading = useSelector(state => state.loading);
@@ -20,12 +20,11 @@ function MainPage () {
     const dispatch = useDispatch();
 
     useEffect (async () => {
-        dispatch(loadingData());
+        dispatch(setLoadingStatus(true))
         await getInfo().then(items => items.data.user.contacts).then(items => dispatch(loadContacts(items)));
         await getInfo().then(items => items.data.user.notes).then(items => dispatch(loadNotes(items)));
-        dispatch(loadedData());
+        dispatch(setLoadingStatus(false))
     }, [])
-
 
     return (
         <>

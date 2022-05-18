@@ -43,7 +43,7 @@ function ContactsItem (props) {
             {
                 clicked ? 
                     <li className='contacts__item'>
-                        <form onSubmit={onSubmit} style={{"display": 'flex'}}>
+                        <form onSubmit={onSubmit} >
                             <input onChange={(e) => setNewTitle(e.target.value)} defaultValue={title} required name='contact' type="text"  minLength="3" className='add__form-input_edit' placeholder='Введите имя'/>
                             <input onChange={(e) => setNewPhone(e.target.value)} defaultValue={phone} required name='phone' type="text"  minLength="6" className='add__form-input_edit' placeholder='Введите номер'/>
                             <button className='add__form-btn add__form-btn_small'>Готово</button>
