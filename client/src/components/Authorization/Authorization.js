@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {NavLink, useHistory} from "react-router-dom";
 import {registration, login} from '../../actions/user'
 import './Authorization.sass'
+import Spinner from '../Spinner/Spinner';
 
 function Registration () {
     const [name, setName] = useState('');
@@ -35,27 +36,32 @@ function Registration () {
 function Login() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false)
     const history = useHistory();
 
     const onFormSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
         let res = await login(name, password);
         if(res) {
+            setLoading(false)
             history.push("/main")
         } else {
+            setLoading(false)
             history.push("/failure")
         }
     }
 
     return (
         <div className="auth">
+            {loading ? <Spinner/> :
             <form onSubmit={onFormSubmit}>
                 <div className="auth__title">Вход в аккаунт</div>
                 <input onChange={(e) => setName(name => e.target.value)} value={name} required placeholder="Имя пользователя" name="username" type="text" className="auth__input"/>
                 <input onChange={(e) => setPassword(password => e.target.value)} value={password} required placeholder="Пароль" name="password" type="password" className="auth__input"/>
                 <button className="auth__btn">Войти</button>
                 <NavLink to="/"><div className="auth__close">На главную</div></NavLink>
-            </form>
+            </form>}
         </div>
     )
 }
